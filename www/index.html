@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title>Article Summary</title>
+    <style>
+      #refresh, #debug, #summary {
+        margin: 1em 0;
+      }
+      #debug, #summary {
+        font-family: monospace;
+      }
+      #refresh {
+        display: none;
+      }
+      #words {
+        width: 36em;
+      }
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      svg {
+        animation: 2s linear infinite spin;
+        max-width: 100px;
+        transform-origin: center;
+        width: 1.5em;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Article Summary</h1>
+    <textarea id="article" rows="20" cols="64" placeholder="Paste your article below"></textarea>
+    <p>Select the summary length (in words): <span id="summary-length"></span></p>
+    <div>
+      1
+      <!-- OpenAI: 1000 tokens ~750 words; GPT-4: 8,192 tokens ~6,144 words GPT-3.5: 4,096 ~3,072 words -->
+      <input id="words" type="range" name="scale" value="250" min="1" max="3005" step="25" />
+      <span id="max"></span>
+    </div>
+    <div id="refresh">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+      </svg>
+      Refreshing...
+    </div>
+    <article id="summary"></article>
+    <div>
+      Debug: <div id="debug"></div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
