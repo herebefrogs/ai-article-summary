@@ -2,18 +2,15 @@
   "name": "1-article-summary",
   "version": "1.0.0",
   "description": "Summarize an article at the level you want with a slider (inspired by Kawandeep's https://github.com/whichlight/tldr-scale)",
-  "main": "index.js",
+  "main": "serve.mjs",
   "scripts": {
-    "start": "esbuild src/index.js --bundle --outdir=www --watch --serve --servedir=www --keyfile=tmp/your.key --certfile=tmp/your.cert",
-    "gen_dev_cert": "mkdir tmp && openssl req -x509 -newkey rsa:4096 -keyout tmp/your.key -out tmp/your.cert -days 9999 -nodes -subj /CN=127.0.0.1",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/serve.mjs",
+    "gen_dev_cert": "mkdir tmp && openssl req -x509 -newkey rsa:4096 -keyout tmp/your.key -out tmp/your.cert -days 9999 -nodes -subj /CN=127.0.0.1"
   },
   "author": "Jerome Lecomte <jerome@herebefrogs.com>",
   "license": "ISC",
   "dependencies": {
-    "openai": "^4.21.0"
-  },
-  "devDependencies": {
-    "esbuild": "^0.19.11"
+    "express": "^4.18.2",
+    "openai": "^4.28.0"
   }
 }
