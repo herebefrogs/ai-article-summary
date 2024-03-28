@@ -37,7 +37,7 @@ const updateSummary = async (articleChanged) => {
   const then = performance.now()
   const response = await fetch("http://localhost:8000/summarize", {
     method: "POST",
-    headers: { "Content-Type": "application/json"},
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       text: articleEl.value,
       count: wordsEl.value

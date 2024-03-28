@@ -1,8 +1,8 @@
 {
-  "name": "1-article-summary",
+  "name": "ai-article-summary",
   "version": "1.0.0",
   "description": "Summarize an article at the level you want with a slider (inspired by Kawandeep's https://github.com/whichlight/tldr-scale)",
-  "main": "serve.mjs",
+  "main": "src/serve.mjs",
   "scripts": {
     "start": "node src/serve.mjs",
     "gen_dev_cert": "mkdir tmp && openssl req -x509 -newkey rsa:4096 -keyout tmp/your.key -out tmp/your.cert -days 9999 -nodes -subj /CN=127.0.0.1"

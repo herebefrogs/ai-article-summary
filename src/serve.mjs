@@ -1,11 +1,11 @@
 import OpenAI from "openai";
 import express from "express";
+import { default as API_KEYS } from "../api-keys.json" with { type: "json" };
 
-const apiKey = "<YOUR KEY HERE>";
 
-const client = new OpenAI({ apiKey });
+const client = new OpenAI({ apiKey: API_KEYS.OPENAI });
 // via Ollama running open source models locally
-// const client = new OpenAI({ apiKey, baseURL: "http://localhost:11434/v1" });
+// const client = new OpenAI({ apiKey: API_KEYS.OPENAI, baseURL: "http://localhost:11434/v1" });
 
 
 const app = express();
@@ -15,7 +15,7 @@ app.use(express.json()) // for parsing req.body when mine type is application/js
 app.post("/summarize", async (req, res) => {
   const request = {
     model: "gpt-3.5-turbo-0125",  // GPT-4 Turbo is pricier than GPT 3.5 Turbo, but and stick closer to the text (quoting it rather than extrapolating meaning) and follows the prompt more accurately.
-//    model: "llama2-uncensored",  // via Ollama running locally
+    // model: "llama2-uncensored",  // via Ollama running locally
     messages: [
       {"role": "system", "content": "You are a newspaper editor conscious to make text fit within a given word limit."},
       {"role": "user", "content": `Simplify the text delimited by @@@ in as close to ${req.body.count} words as possible: @@@ ${req.body.text} @@@}`},
@@ -25,7 +25,7 @@ app.post("/summarize", async (req, res) => {
   }
 
   const then = Date.now();
-  // via OpenAI's NodeJS client lib
+  // via OpenAI's NodeJS client lib (also used for Ollama running locally)
   const completion = await client.chat.completions.create(request);
 
   // via Fetch + OpenAI API
